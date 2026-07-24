@@ -54,6 +54,38 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
+## Code
+
+```
+from collections import defaultdict
+
+def dfs(graph, node, visited, path):
+    visited.add(node)
+    path.append(node)
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited, path)
+
+graph = defaultdict(list)
+
+n, e = map(int, input().split())
+
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)
+
+visited = set()
+path = []
+
+start = list(graph.keys())[0]
+
+dfs(graph, start, visited, path)
+
+print(path)
+```
+
 <hr>
 <h3>Sample Input</h3>
 <hr>
